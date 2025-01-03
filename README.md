@@ -1,4 +1,2 @@
 # micro-initlua
-```
-$ git clone https://github.com/inunosinsi/micro-initlua.git ~/.config/micro/init.lua
-```
+init.luaのファイルの中身を~/.config/micro/init.luaにコピーする
