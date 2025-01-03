@@ -54,9 +54,8 @@ function cp(bp, args)
 		cmd = "sh -c 'echo -n \""..path.."\" | wl-copy'"
 	elseif srv == "tty" then
 		cmd = "sh -c 'echo -n \""..path.."\" | osc52'"
-		cmd = "sh -c 'echo -n \""..path.."\" | xclip -selection clipboard'"
 	else
-		
+		cmd = "sh -c 'echo -n \""..path.."\" | xclip -selection clipboard'"
 	end
 
 	local output, err = shell.RunInteractiveShell(cmd, false, false)
