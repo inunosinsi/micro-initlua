@@ -10,11 +10,15 @@ end
 function run(bp)
 	local buf = bp.Buf
 	local path = buf.Path
-	    
-	if buf:FileType() == "html" then
+
+	local fileType = buf:FileType()
+	
+	if fileType == "html" then
 		shell.RunCommand("chromium " .. buf.Path)
-	elseif buf:FileType() == "go" then
+	elseif fileType == "go" then
 		shell.RunInteractiveShell("go run " .. buf.Path, true, false)
+	elseif fileType == "lua" then
+		shell.RunInteractiveShell("lua " .. buf.Path, true, false)
 	end
 end
 
@@ -50,12 +54,14 @@ function cp(bp, args)
 	end
 
 	local srv = getDisplayServerType()
+	micro.InfoBar():Message(srv)
 	if srv == "wayland" then
 		cmd = "sh -c 'echo -n \""..path.."\" | wl-copy'"
 	elseif srv == "tty" then
 		cmd = "sh -c 'echo -n \""..path.."\" | osc52'"
-	else
 		cmd = "sh -c 'echo -n \""..path.."\" | xclip -selection clipboard'"
+	else
+		
 	end
 
 	local output, err = shell.RunInteractiveShell(cmd, false, false)
