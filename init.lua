@@ -15,6 +15,8 @@ function run(bp)
 	
 	if fileType == "html" then
 		shell.RunCommand("chromium " .. buf.Path)
+	elseif fileType == "python" then
+		shell.RunInteractiveShell("python3 " .. buf.Path, true, false)
 	elseif fileType == "go" then
 		shell.RunInteractiveShell("go run " .. buf.Path, true, false)
 	elseif fileType == "lua" then
